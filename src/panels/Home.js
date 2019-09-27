@@ -12,8 +12,8 @@ class Home extends React.Component {
 		constructor(props){
 			super(props);
 			this.state = {
-					qrData: 111,
-					qrType: 111,
+					qrData: null,
+					qrType: null,
 			};
 		}
 
