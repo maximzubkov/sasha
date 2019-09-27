@@ -1,35 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import Button from '@vkontakte/vkui/dist/components/Button/Button';
-import Group from '@vkontakte/vkui/dist/components/Group/Group';
-import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
-import Div from '@vkontakte/vkui/dist/components/Div/Div';
-import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
+import { Panel, ListItem, Button, Group, Div, Avatar, PanelHeader, HeaderButton, platform, IOS } from '@vkontakte/vkui';
+import './Persik.css';
+import connect from '@vkontakte/vk-connect';
+import '@vkontakte/vkui/dist/vkui.css';
+import Icon24Qr from '@vkontakte/icons/dist/24/qr';
 
-const Home = ({ id, go, fetchedUser }) => (
-	<Panel id={id}>
-		<PanelHeader>Example</PanelHeader>
-		{fetchedUser &&
-		<Group title="User Data Fetched with VK Connect">
-			<Cell
-				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
-				description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-			>
-				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-			</Cell>
-		</Group>}
+const osname = platform();
 
-		<Group title="Navigation Example">
-			<Div>
-				<Button size="xl" level="2" onClick={go} data-to="persik">
-					Show me the Persik, please
-				</Button>
-			</Div>
-		</Group>
-	</Panel>
-);
+class Home extends React.Component {
+		constructor(props){
+			super(props);
+			this.state = {
+					qrData: 111,
+					qrType: 111,
+			};
+		}
+
+		getQrData = () => {
+			connect.subscribe((e) => {
+				switch (e.detail.type) {
+					case 'VKWebAppOpenQRResult':
+						this.setState({ qrData: e.detail.data.qr_data });
+						break;
+					default:
+						console.log(e.detail.type);
+				}
+			});
+			connect.send('VKWebAppOpenQR');
+		}
+
+		render(){
+				const fetchedUser = this.props.fetchedUser;
+				const player = this.props.player;
+				const id = this.props.id;
+				const go = this.props.go;
+				return (
+				<Panel id={id}>
+						<PanelHeader
+							left={<HeaderButton onClick={this.getQrData}>
+								{osname === IOS ? <Icon24Qr/> : <Icon24Qr/>}
+							</HeaderButton>}
+						>
+							Главная страница
+						</PanelHeader>
+						{fetchedUser &&
+						<Group title="User Data Fetched with VK Connect">
+								<ListItem
+								before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
+								description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
+								>
+								{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
+								</ListItem>
+						</Group>}
+
+						<Group title="Navigation Example">
+								<Div>
+										{this.state.qrData}
+								</Div>
+						</Group>
+						{player}
+				</Panel>
+				);
+		}
+}
 
 Home.propTypes = {
 	id: PropTypes.string.isRequired,
