@@ -50,7 +50,7 @@ class Events extends React.Component {
         var key2 = key1['id01'];
         console.log('key2');
         console.log(key2);
-        return [exhibition_item['name'], 'http://pushkinmuseum.art' + key2];
+        return [[exhibition_item['name'], exhibition_item['text']], 'http://pushkinmuseum.art' + key2];
       }
     );
 
@@ -63,11 +63,12 @@ class Events extends React.Component {
         return 'http://pushkinmuseum.art' + key2;
       }
     );
-    console.log(this.state.exhibition_pairs)
 
-    const images_events = this.state.exhibition_pairs.map(([name, image]) => {
+    const images_events = this.state.exhibition_pairs.map(([[name, desc], image]) => {
+      var desc_react = htmlToReactParser.parse(desc.replace("[", "").replace("]", ""))
+      console.log(desc);
       return (
-        <img onClick={() => this.setState({activeEvent: name})} className='b' src={image}/>
+        <img onClick={() => this.setState({activeEvent: [name, desc_react]})} className='b' src={image}/>
       )
     }
     );
@@ -85,8 +86,8 @@ class Events extends React.Component {
         <Group title="Выставки">
         <Div>
            <Gallery
-              slideWidth="30%"
-              align="center"
+              slideWidth="custom"
+              align="right"
               style={{ height: 200 }}
               slideIndex={this.state.slideIndex}
               onChange={slideIndex => this.setState({slideIndex})}
@@ -95,15 +96,23 @@ class Events extends React.Component {
            </Gallery>
            <Div>
                 <Button onClick={() => this.setState({slideIndex: this.state.slideIndex === 2 ? 0 : this.state.slideIndex + 1 })}>Next slide</Button>
-              </Div>
+            </Div>
          </Div>
          </Group>
          {this.state.activeEvent &&
-           <Group>
+           <Div>
+           <Group title="Выставка">
                <Div>
-               {this.state.activeEvent}
+               {this.state.activeEvent[0]}
                </Div>
-           </Group>}
+           </Group>
+           <Group title="Описание">
+               <Div>
+               {this.state.activeEvent[1]}
+               </Div>
+           </Group>
+           </Div>
+         }
         <SocialLinks/>
       </Panel>
     );
