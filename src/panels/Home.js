@@ -5,7 +5,9 @@ import './Persik.css';
 import connect from '@vkontakte/vk-connect';
 import '@vkontakte/vkui/dist/vkui.css';
 import Icon24Qr from '@vkontakte/icons/dist/24/qr';
-
+import SocialLinks from './SocialLinks';
+import Test from './Test'
+import questions from '../test/test.json'
 const osname = platform();
 
 class Home extends React.Component {
@@ -14,7 +16,16 @@ class Home extends React.Component {
 			this.state = {
 					qrData: null,
 					qrType: null,
+					value:
+					submit: false,
+					score: null,
 			};
+		}
+
+		handleChange = (event) => this.setState({value: event.target.value});
+
+		handleSubmit = () => {
+				document.getElementById('')
 		}
 
 		getQrData = () => {
@@ -57,6 +68,12 @@ class Home extends React.Component {
 						<Group title="Navigation Example">
 								<Div>
 										{this.state.qrData}
+										{!this.state.submit && questions.map(
+											(q) => (
+												<Test id={'form' + {q.id}} imag={q.imag} author={q.author} variants={q.variants} onChange={this.handleChange}/>
+											)
+										)}
+										<Button size="xl" onClick={this.countScore}>Отправить ответы</Button>
 								</Div>
 						</Group>
 						<Div>
@@ -65,6 +82,7 @@ class Home extends React.Component {
 							</Button>
 						</Div>
 						{player}
+						<SocialLinks/>
 				</Panel>
 				);
 		}
