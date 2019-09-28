@@ -88,7 +88,9 @@ class Events extends React.Component {
              align="right"
              slideWidth="custom"
              style={{ height: 200 }}>
-             {images_events}
+             <img onClick={() => this.setState({activeEvent: 'wtf1'})} src='https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_01.jpg'/>
+             <img onClick={() => this.setState({activeEvent: 'wtf2'})} src='https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_02.jpg'/>
+             <img onClick={() => this.setState({activeEvent: 'wtf3'})} src='https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_03.jpg'/>
            </Gallery>
          </Div>
          </Group>
