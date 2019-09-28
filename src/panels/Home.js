@@ -59,6 +59,11 @@ class Home extends React.Component {
 										{this.state.qrData}
 								</Div>
 						</Group>
+						<Div>
+							<Button size="xl" level="2" onClick={go} data-to="exhibit">
+								Show me the Exhibit, please
+							</Button>
+						</Div>
 						{player}
 				</Panel>
 				);
