@@ -16,7 +16,6 @@ class Home extends React.Component {
 			this.state = {
 					qrData: null,
 					qrType: null,
-					value:
 					submit: false,
 					score: null,
 			};

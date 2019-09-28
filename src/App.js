@@ -8,6 +8,7 @@ import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
 import Icon24Done from '@vkontakte/icons/dist/24/done';
 import songs from './audio/songs';
 import Sound from 'react-sound';
+import Exhibit from './panels/Exhibit';
 
 import PlayerControls from './panels/music_control/PlayerControls';
 import SongSelector from './panels/music_control/SongSelector';
@@ -192,6 +193,7 @@ class App extends React.Component {
 		return (
 			<View id="main" activePanel={this.state.activePanel} modal={modal}>
 				<Home id="home" fetchedUser={this.state.fetchedUser} go={this.go} player={audioPlayer}/>
+				<Exhibit id="exhibit" go={this.go} player={audioPlayer}/>
 			</View>
 		);
 	}
