@@ -18,8 +18,8 @@ const itemStyle = {
     fontSize: 12
   };
 
-const Test = ({id, imag, author, variants, onChange}) => (
-  <FormLayoutGroup id={id} onChange={this.handleChange} top="Выберите автора картины">
+const Test = ({name, imag, author, variants, onChange}) => (
+  <FormLayoutGroup name={name} onChange={onChange} top="Выберите автора картины">
       <img className="Persik" src={imag} alt="Persik The Cat"/>
       {variants.map((v) =>
         <Radio name="type">{v}</Radio>

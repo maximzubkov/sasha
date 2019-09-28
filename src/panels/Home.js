@@ -16,7 +16,6 @@ class Home extends React.Component {
 			this.state = {
 					qrData: null,
 					qrType: null,
-					value:
 					submit: false,
 					score: null,
 			};
@@ -24,9 +23,15 @@ class Home extends React.Component {
 
 		handleChange = (event) => this.setState({value: event.target.value});
 
-		handleSubmit = () => {
-				document.getElementById('')
-		}
+		handleInputChange(event) {
+	    const target = event.target;
+	    const value = target.type === 'checkbox' ? target.checked : target.value;
+	    const name = target.name;
+
+	    this.setState({
+	      [name]: value
+	    });
+	  }
 
 		getQrData = () => {
 			connect.subscribe((e) => {
@@ -70,7 +75,7 @@ class Home extends React.Component {
 										{this.state.qrData}
 										{!this.state.submit && questions.map(
 											(q) => (
-												<Test id={'form' + {q.id}} imag={q.imag} author={q.author} variants={q.variants} onChange={this.handleChange}/>
+												<Test name={q.name} imag={q.imag} author={q.author} variants={q.variants} onChange={this.handleChange}/>
 											)
 										)}
 										<Button size="xl" onClick={this.countScore}>Отправить ответы</Button>
