@@ -193,7 +193,7 @@ class App extends React.Component {
 		return (
 			<View id="main" activePanel={this.state.activePanel} modal={modal}>
 				<Home id="home" fetchedUser={this.state.fetchedUser} go={this.go} player={audioPlayer}/>
-				<Exhibit id="exhibit" go={this.go} player={audioPlayer}/>
+				<Exhibit id="exhibit" go={this.go} player={audioPlayer} exp_id={3666}/>
 			</View>
 		);
 	}
