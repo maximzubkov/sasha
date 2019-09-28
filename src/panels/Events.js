@@ -28,6 +28,7 @@ class Events extends React.Component {
       exhibition_pairs: undefined,
       activeEvent: undefined,
       event_photos: undefined,
+      slideIndex: 0
     };
   }
 
@@ -66,9 +67,7 @@ class Events extends React.Component {
 
     const images_events = this.state.exhibition_pairs.map(([name, image]) => {
       return (
-        <Button level="tertiary" height={ 200} width={ 200} onClick={() => this.setState({activeEvent: name})} >
-          <Image src={image} height={ 200} width={ 200} />
-        </Button>
+        <img onClick={() => this.setState({activeEvent: name})} className='b' src={image}/>
       )
     }
     );
@@ -86,12 +85,17 @@ class Events extends React.Component {
         <Group title="Выставки">
         <Div>
            <Gallery
-             align="center"
-             slideWidth="custom"
-             style={{ height: 200 }}>
+              slideWidth="30%"
+              align="center"
+              style={{ height: 200 }}
+              slideIndex={this.state.slideIndex}
+              onChange={slideIndex => this.setState({slideIndex})}
              >
             {images_events}
            </Gallery>
+           <Div>
+                <Button onClick={() => this.setState({slideIndex: this.state.slideIndex === 2 ? 0 : this.state.slideIndex + 1 })}>Next slide</Button>
+              </Div>
          </Div>
          </Group>
          {this.state.activeEvent &&
