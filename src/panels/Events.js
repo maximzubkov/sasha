@@ -23,8 +23,15 @@ class Events extends React.Component {
     super(props);
     this.state = {
 
-      event_names: undefined,
-      event_photos: undefined
+      exhibition_names: undefined,
+      lection_names: undefined,
+      concert_names: undefined,
+      other_names: undefined,
+
+      event_photos: undefined,
+      lection_photos: undefined,
+      concert_photos: undefined,
+      other_photos: undefined
     };
   }
 
@@ -35,12 +42,21 @@ class Events extends React.Component {
     var HtmlToReactParser = require('html-to-react').Parser;
     var htmlToReactParser = new HtmlToReactParser();
 
-    this.state.event_names = Object.values(exhibitions).map(exhibition_item =>
+    this.state.exhibition_names = Object.values(exhibitions).map(exhibition_item =>
       {
         return exhibition_item['name']
       }
     );
-    console.log(this.state.event_names);
+    this.state.lection_names = Object.values(lections).map(lection_item =>
+      {
+        return lection_item['name']
+      }
+    );
+    this.state.corcert_names = Object.values(concerts).map(concert_item =>
+      {
+        return concert_item['name']
+      }
+    );
 
     this.state.event_photos = Object.values(exhibitions).map(exhibition_item =>
       {
@@ -52,10 +68,11 @@ class Events extends React.Component {
       }
     );
 
-    const images = this.state.event_photos.map(image =>
+    const images_events = this.state.event_photos.map(image =>
     { return <Image src={image} height={ 200} width={ 200} />
     }
     );
+
 
     return (
       <Panel id="events">
@@ -73,7 +90,7 @@ class Events extends React.Component {
              align="right"
              slideWidth="custom"
              style={{ height: 200 }}>
-             {images}
+             {images_events}
            </Gallery>
          </Div>
          </Group>
