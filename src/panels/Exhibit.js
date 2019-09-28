@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import SocialLinks from './SocialLinks';
 import objects from '../data/parsed/objects_rus.json';
 import Parser from 'html-to-react';
+import './Exhibit.css';
 const osname = platform();
 
 class Exhibit extends React.Component {
@@ -92,6 +93,7 @@ class Exhibit extends React.Component {
             {this.state.name + ', ' + this.state.period_text}
           </Div>
           </Group>
+
           <Group title="Галерея">
           <Div>
              <Gallery

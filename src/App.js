@@ -9,10 +9,12 @@ import Icon24Done from '@vkontakte/icons/dist/24/done';
 import songs from './audio/songs';
 import Sound from 'react-sound';
 import Exhibit from './panels/Exhibit';
-
+import Events from './panels/Events';
+import Events_new from './panels/Events_new';
 import PlayerControls from './panels/music_control/PlayerControls';
 import SongSelector from './panels/music_control/SongSelector';
 import Home from './panels/Home';
+import Map from './panels/Map';
 
 const MODAL_PAGE_MUSIC = 'music';
 
@@ -194,6 +196,9 @@ class App extends React.Component {
 			<View id="main" activePanel={this.state.activePanel} modal={modal}>
 				<Home id="home" fetchedUser={this.state.fetchedUser} go={this.go} player={audioPlayer}/>
 				<Exhibit id="exhibit" go={this.go} player={audioPlayer} exp_id={3666}/>
+				<Events id="events" go={this.go} player={audioPlayer}/>
+				<Events_new id="events_new" go={this.go} player={audioPlayer}/>
+				<Map id="map" go={this.go} player={audioPlayer}/>
 			</View>
 		);
 	}
