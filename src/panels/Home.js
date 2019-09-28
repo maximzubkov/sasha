@@ -129,11 +129,6 @@ class Home extends React.Component {
 							</Button>
 						</Div>
 						<Div>
-							<Button size="xl" level="2" onClick={go} data-to="events_new">
-								Show me Events_new, please
-							</Button>
-						</Div>
-						<Div>
 							<Button size="xl" level="2" onClick={go} data-to="map">
 								Show me Map, please
 							</Button>

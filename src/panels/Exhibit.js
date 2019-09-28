@@ -2,7 +2,7 @@ import React from 'react';
 import connect from '@vkontakte/vk-connect';
 import '@vkontakte/vkui/dist/vkui.css';
 import {Panel, Group,Cell, PanelHeader, HeaderButton,
-  ListItem, Tabs, TabsItem, HorizontalScroll, Div,
+  ListItem, Tabs, TabsItem, HorizontalScroll, Div, Button,
   Counter, platform, IOS, Gallery} from '@vkontakte/vkui';
 import './Persik.css';
 import persik from '../img/persik.png';
@@ -27,7 +27,8 @@ class Exhibit extends React.Component {
         'https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_03.jpg'
       ],
       description: 'Каменный голубь',
-      name: 'Голубь'
+      name: 'Голубь',
+      slideIndex: 0
     };
   }
 
@@ -93,15 +94,19 @@ class Exhibit extends React.Component {
             {this.state.name + ', ' + this.state.period_text}
           </Div>
           </Group>
-
           <Group title="Галерея">
           <Div>
              <Gallery
                align="right"
                slideWidth="custom"
-               style={{ height: 200 }}>
+               style={{ height: 200 }}
+               slideIndex={this.state.slideIndex}
+               onChange={slideIndex => this.setState({slideIndex})}>
                {images}
              </Gallery>
+             <Div>
+                  <Button onClick={() => this.setState({slideIndex: this.state.slideIndex === 2 ? 0 : this.state.slideIndex + 1 })}>Next slide</Button>
+              </Div>
            </Div>
            </Group>
            <Group title="Описание">
