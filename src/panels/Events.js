@@ -16,6 +16,7 @@ import exhibitions from '../data/parsed/events_exhibition.json';
 import lections from '../data/parsed/events_lections.json';
 import concerts from '../data/parsed/events_concert.json';
 import Parser from 'html-to-react';
+import './styles.css'
 const osname = platform();
 
 class Events extends React.Component {
@@ -85,12 +86,11 @@ class Events extends React.Component {
         <Group title="Выставки">
         <Div>
            <Gallery
-             align="right"
+             align="center"
              slideWidth="custom"
              style={{ height: 200 }}>
-             <img onClick={() => this.setState({activeEvent: 'wtf1'})} src='https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_01.jpg'/>
-             <img onClick={() => this.setState({activeEvent: 'wtf2'})} src='https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_02.jpg'/>
-             <img onClick={() => this.setState({activeEvent: 'wtf3'})} src='https://pushkinmuseum.art/data/fonds/ancient_east/1_1_a/1_1_a_4679/3666_foto_1_03.jpg'/>
+             >
+            {images_events}
            </Gallery>
          </Div>
          </Group>
