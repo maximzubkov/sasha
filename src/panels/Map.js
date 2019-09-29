@@ -52,7 +52,8 @@ class Map extends React.Component {
 								{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
 								</ListItem>
 						</Group>}
-              <MapSVG polyline={{points: {polyline}, stroke: "red", strokeWidth:"3", fill:"none"}}/>
+              <MapSVG/>
+
 
 						{player}
 					  <SocialLinks/>

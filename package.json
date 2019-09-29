@@ -39,7 +39,8 @@
     "react-native": "^0.61.1",
     "react-resize-image": "^1.0.4",
     "react-router-dom": "^5.1.0",
-    "react-sound": "^1.2.0"
+    "react-sound": "^1.2.0",
+    "react-svg-draw": "0.0.12"
   },
   "browserslist": {
     "production": [
