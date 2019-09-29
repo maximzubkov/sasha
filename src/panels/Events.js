@@ -25,8 +25,10 @@ class Events extends React.Component {
     this.state = {
 
       exhibition_names: undefined,
+      lection_names: undefined,
       exhibition_pairs: undefined,
       activeEvent: undefined,
+      activeLection: undefined,
       event_photos: undefined,
       slideIndex: 0
     };
@@ -42,6 +44,13 @@ class Events extends React.Component {
     this.state.exhibition_names =Object.values(exhibitions).map(exhibition_item =>
       {
         return exhibition_item['name']
+      }
+    );
+    this.state.lection_pairs =Object.values(lections).map(lection_item =>
+      {
+        var desc = lection_item['text']
+        var desc_react = htmlToReactParser.parse(desc.replace("[", "").replace("]<p>", ""))
+        return [lection_item['name'], desc_react]
       }
     );
     this.state.exhibition_pairs = Object.values(exhibitions).map(exhibition_item =>
@@ -65,10 +74,21 @@ class Events extends React.Component {
     );
 
     const images_events = this.state.exhibition_pairs.map(([[name, desc], image]) => {
-      var desc_react = htmlToReactParser.parse(desc.replace("[", "").replace("]", ""))
+      var desc_react = htmlToReactParser.parse(desc.replace("[", "").replace("]<p>", ""))
       console.log(desc);
       return (
         <img onClick={() => this.setState({activeEvent: [name, desc_react]})} className='b' src={image}/>
+      )
+    }
+    );
+
+    const buttons_lectures = this.state.lection_pairs.map(([name, desc]) => {
+      return (
+        <Button size="xl" level="2" onClick={() => this.setState({activeLection: [name, desc]})}>
+          <b>
+          {name}
+          </b>
+        </Button>
       )
     }
     );
@@ -112,7 +132,39 @@ class Events extends React.Component {
                </Div>
            </Group>
            </Div>
+
          }
+         <Group title="Лекции">
+         <Div>
+            <Gallery
+               slideWidth="custom"
+               align="right"
+               style={{ height: 200 }}
+               slideIndex={this.state.slideIndex}
+               onChange={slideIndex => this.setState({slideIndex})}
+              >
+             {buttons_lectures}
+            </Gallery>
+            <Div>
+                 <Button onClick={() => this.setState({slideIndex: this.state.slideIndex === 2 ? 0 : this.state.slideIndex + 1 })}>Next slide</Button>
+             </Div>
+          </Div>
+          </Group>
+          {this.state.activeLection &&
+            <Div>
+            <Group title="Лекция">
+                <Div>
+                {this.state.activeLection[0]}
+                </Div>
+            </Group>
+            <Group title="Описание">
+                <Div>
+                {this.state.activeLection[1]}
+                </Div>
+            </Group>
+            </Div>
+
+          }
         <SocialLinks/>
       </Panel>
     );
