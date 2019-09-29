@@ -137,7 +137,6 @@ class Events extends React.Component {
          <Group title="Лекции">
          <Div>
             <Gallery
-               slideWidth="custom"
                align="right"
                style={{ height: 200 }}
                slideIndex={this.state.slideIndex}
