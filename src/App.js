@@ -14,6 +14,7 @@ import PlayerControls from './panels/music_control/PlayerControls';
 import SongSelector from './panels/music_control/SongSelector';
 import Home from './panels/Home';
 import Map from './panels/Map';
+import Test from './panels/Test'
 
 const MODAL_PAGE_MUSIC = 'music';
 
@@ -188,6 +189,7 @@ class App extends React.Component {
 				<Exhibit id="exhibit" go={this.go} player={audioPlayer} exp_id={3666}/>
 				<Events id="events" go={this.go} player={audioPlayer}/>
 				<Map id="map" go={this.go} player={audioPlayer}/>
+				<Test id="test" go={this.go} player={audioPlayer}/>
 			</View>
 		);
 	}

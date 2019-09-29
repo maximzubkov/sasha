@@ -89,33 +89,6 @@ class Home extends React.Component {
 						<Group title="Navigation Example">
 								<Div>
 										{this.state.qrData}
-										{!this.state.submit &&
-											<FormLayout>
-												{questions.map((q) => (
-														<FormLayout>
-																<img className="Persik" src={q.imag} alt="Persik The Cat"/>
-																<Select name={q.name} onChange={this.handleInputChange} placeholder="Выберите автора картины">
-																		{q.variants.map((v) =>
-																			<option value={v}>{v}</option>
-																		)}
-																</Select>
-														</FormLayout>
-													)
-												)}
-											<FormLayout>
-												<Button size="xl" onClick={this.handleSubmit}>Отправить ответы</Button>
-											</FormLayout>
-											</FormLayout>}
-											{(this.state.win == true) &&
-												<Div>
-													Ура
-												</Div>
-											}
-											{(this.state.win == false) &&
-												<Div>
-													Не Ура
-												</Div>
-											}
 								</Div>
 						</Group>
 						<Div>
@@ -131,6 +104,11 @@ class Home extends React.Component {
 						<Div>
 							<Button size="xl" level="2" onClick={go} data-to="map">
 								Show me Map, please
+							</Button>
+						</Div>
+						<Div>
+							<Button size="xl" level="2" onClick={go} data-to="test">
+								Show me Test, please
 							</Button>
 						</Div>
 						{player}

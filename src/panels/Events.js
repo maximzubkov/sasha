@@ -16,6 +16,7 @@ import exhibitions from '../data/parsed/events_exhibition.json';
 import lections from '../data/parsed/events_lections.json';
 import concerts from '../data/parsed/events_concert.json';
 import Parser from 'html-to-react';
+import axios from 'axios';
 import './styles.css'
 const osname = platform();
 
@@ -30,13 +31,24 @@ class Events extends React.Component {
       activeEvent: undefined,
       activeLection: undefined,
       event_photos: undefined,
-      slideIndex: 0
+      slideIndex: 0,
+      posts:[]
     };
   }
 
+  componentDidMount() {
+    axios.get('http://95.213.38.144:5001/get_places?user_id=34')
+      .then(response => {
+        console.log(response)
+        this.setState({posts:response.data})
+      })
+
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   render() {
-
-
 
     var HtmlToReactParser = require('html-to-react').Parser;
     var htmlToReactParser = new HtmlToReactParser();

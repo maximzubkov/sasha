@@ -6,7 +6,8 @@ import connect from '@vkontakte/vk-connect';
 import '@vkontakte/vkui/dist/vkui.css';
 import Icon24Qr from '@vkontakte/icons/dist/24/qr';
 import SocialLinks from './SocialLinks';
-import questions from '../test/test.json'
+import questions from '../test/test.json';
+import axios from 'axios';
 import { ReactComponent as MapSVG } from '../map_navigate/maps/main_1floor.svg';
 
 const osname = platform();
@@ -19,6 +20,18 @@ class Map extends React.Component {
 			};
 
 		}
+
+		componentDidMount() {
+	    axios.get('http://95.213.38.144:5001/get_places?user_id=34')
+	      .then(response => {
+	        console.log(response)
+	        this.setState({posts:response.data})
+	      })
+
+	      .catch(error => {
+	        console.log(error)
+	      })
+	  }
 
 		render(){
 				const fetchedUser = this.props.fetchedUser;
