@@ -131,18 +131,9 @@ class App extends React.Component {
 						/>
 						<Div>
 							<InfoRow title={this.state.currentSong.title}>
-								<Progress value={this.state.position/this.state.currentSong.duration * 100} />
+								<Progress value={this.state.position/this.state.currentSong.duration /10} />
 							</InfoRow>
 						</Div>
-						<FormLayout>
-							<Slider
-								min={0}
-								max={100}
-								value={Number(this.state.volume)}
-								onChange={value => this.setState({volume: value})}
-								top="Volume"
-							/>
-						</FormLayout>
 						<FormLayout>
 							<Slider
 								min={0}
